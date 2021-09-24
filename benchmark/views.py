@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from mlcube.serializers import MlCubeSerializer
 from dataset.serializers import DatasetSerializer
-from benchmarkuser.serializers import BenchmarkUserSerializer
+from benchmarkuser.serializers import BenchmarkUserListSerializer
 from result.serializers import ModelResultSerializer
 from django.http import Http404
 from rest_framework.generics import GenericAPIView
@@ -76,7 +76,7 @@ class BenchmarkDatasetList(GenericAPIView):
 
 
 class BenchmarkUserList(GenericAPIView):
-    serializer_class = BenchmarkUserSerializer
+    serializer_class = BenchmarkUserListSerializer
     queryset = ''
     
     def get_object(self, pk):
@@ -91,7 +91,7 @@ class BenchmarkUserList(GenericAPIView):
         """
         benchmark = self.get_object(pk)
         usergroups = benchmark.benchmarkuser_set.all()
-        serializer = BenchmarkUserSerializer(usergroups, many=True)
+        serializer = BenchmarkUserListSerializer(usergroups, many=True)
         return Response(serializer.data)
 
 class BenchmarkResultList(GenericAPIView):
@@ -110,7 +110,6 @@ class BenchmarkResultList(GenericAPIView):
         """
         benchmark = self.get_object(pk)
         results = benchmark.modelresult_set.all()
-        print(results)
         serializer = ModelResultSerializer(results, many=True)
         return Response(serializer.data)
 

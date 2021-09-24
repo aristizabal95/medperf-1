@@ -1,15 +1,15 @@
 from django.shortcuts import render
 
 from .models import BenchmarkModel
-from .serializers import BenchmarkModelSerializer, BenchmarkModelApprovalSerializer, ModelApprovalSerializer
+from .serializers import BenchmarkModelListSerializer, BenchmarkModelApprovalSerializer, ModelApprovalSerializer
 from django.http import Http404
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 from rest_framework import status
 
 
-class BenchmarkModel(GenericAPIView):
-    serializer_class = BenchmarkModelSerializer
+class BenchmarkModelList(GenericAPIView):
+    serializer_class = BenchmarkModelListSerializer
     queryset = ''
     
     #def get(self, request, format=None):
@@ -17,14 +17,14 @@ class BenchmarkModel(GenericAPIView):
     #    List all models associated across benchmarks
     #    """
     #    benchmarkmodels = BenchmarkModel.objects.all()
-    #    serializer = BenchmarkModelSerializer(benchmarkmodels, many=True)
+    #    serializer = BenchmarkModelListSerializer(benchmarkmodels, many=True)
     #    return Response(serializer.data)
 
     def post(self, request, format=None):
         """
         Associate a model to a benchmark
         """
-        serializer = BenchmarkModelSerializer(data=request.data)
+        serializer = BenchmarkModelListSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)

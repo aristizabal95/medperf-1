@@ -3,7 +3,7 @@ from rest_framework import serializers
 
 from .models import BenchmarkModel
 
-class BenchmarkModelSerializer(serializers.ModelSerializer):
+class BenchmarkModelListSerializer(serializers.ModelSerializer):
     class Meta:
         model = BenchmarkModel
         read_only_fields = ['approved_at']

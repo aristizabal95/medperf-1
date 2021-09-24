@@ -1,15 +1,15 @@
 from django.shortcuts import render
 
 from .models import BenchmarkUser
-from .serializers import BenchmarkUserSerializer, BenchmarkRoleSerializer, RoleSerializer
+from .serializers import BenchmarkUserListSerializer, BenchmarkRoleSerializer, RoleSerializer
 from django.http import Http404
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 from rest_framework import status
 
 
-class BenchmarkUser(GenericAPIView):
-    serializer_class = BenchmarkUserSerializer
+class BenchmarkUserList(GenericAPIView):
+    serializer_class = BenchmarkUserListSerializer
     queryset = ''
     
     #def get(self, request, format=None):
@@ -17,14 +17,14 @@ class BenchmarkUser(GenericAPIView):
     #    List all users associated across benchmarks
     #    """
     #    benchmarkusers = BenchmarkUser.objects.all()
-    #    serializer = BenchmarkUserSerializer(benchmarkusers, many=True)
+    #    serializer = BenchmarkUserListSerializer(benchmarkusers, many=True)
     #    return Response(serializer.data)
 
     def post(self, request, format=None):
         """
         Associate a user to a benchmark
         """
-        serializer = BenchmarkUserSerializer(data=request.data)
+        serializer = BenchmarkUserListSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)

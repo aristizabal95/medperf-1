@@ -1,15 +1,15 @@
 from django.shortcuts import render
 
 from .models import BenchmarkDataset
-from .serializers import BenchmarkDatasetSerializer, BenchmarkDatasetApprovalSerializer, DatasetApprovalSerializer
+from .serializers import BenchmarkDatasetListSerializer, BenchmarkDatasetApprovalSerializer, DatasetApprovalSerializer
 from django.http import Http404
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 from rest_framework import status
 
 
-class BenchmarkDataset(GenericAPIView):
-    serializer_class = BenchmarkDatasetSerializer
+class BenchmarkDatasetList(GenericAPIView):
+    serializer_class = BenchmarkDatasetListSerializer
     queryset = ''
 
     #def get(self, request, format=None):
@@ -17,14 +17,14 @@ class BenchmarkDataset(GenericAPIView):
     #    List all datasets associated across benchmarks
     #    """
     #    benchmarkdatasets = BenchmarkDataset.objects.all()
-    #    serializer = BenchmarkDatasetSerializer(benchmarkdatasets, many=True)
+    #    serializer = BenchmarkDatasetListSerializer(benchmarkdatasets, many=True)
     #    return Response(serializer.data)
 
     def post(self, request, format=None):
         """
         Associate a dataset to a benchmark
         """
-        serializer = BenchmarkDatasetSerializer(data=request.data)
+        serializer = BenchmarkDatasetListSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)

@@ -2,7 +2,7 @@ from django.contrib import admin
 from rest_framework import serializers
 from .models import BenchmarkUser
 
-class BenchmarkUserSerializer(serializers.ModelSerializer):
+class BenchmarkUserListSerializer(serializers.ModelSerializer):
     class Meta:
         model = BenchmarkUser
         fields = ['user', 'benchmark', 'role', 'created_at', 'modified_at']
