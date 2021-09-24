@@ -6,19 +6,20 @@ from django.http import Http404
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 from rest_framework import status
-
+from drf_yasg.utils import swagger_auto_schema
 
 class BenchmarkModelList(GenericAPIView):
     serializer_class = BenchmarkModelListSerializer
     queryset = ''
-    
-    #def get(self, request, format=None):
-    #    """
-    #    List all models associated across benchmarks
-    #    """
-    #    benchmarkmodels = BenchmarkModel.objects.all()
-    #    serializer = BenchmarkModelListSerializer(benchmarkmodels, many=True)
-    #    return Response(serializer.data)
+   
+    @swagger_auto_schema(operation_id="models_benchmarks_list_all")
+    def get(self, request, format=None):
+        """
+        List all models associated across benchmarks
+        """
+        benchmarkmodels = BenchmarkModel.objects.all()
+        serializer = BenchmarkModelListSerializer(benchmarkmodels, many=True)
+        return Response(serializer.data)
 
     def post(self, request, format=None):
         """

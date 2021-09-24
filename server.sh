@@ -47,7 +47,7 @@ BENCHMARK=$(curl -s -X POST "http://127.0.0.1:8000/benchmarks/" -H  "accept: app
 echo Benchmark Created. ID: $BENCHMARK
 
 # Associate the testmodelowner(Model owner) to the created benchmark by Benchmark owner user
-MODEL_OWNER_IN_BENCHMARK=$(curl -s -X POST "http://127.0.0.1:8000/users/benchmarks" -H  "accept: application/json" -H  "Authorization: Token $BENCHMARK_OWNER_TOKEN" -H  "Content-Type: application/json" -d "{  \"user\": $MODEL_OWNER,  \"benchmark\": $BENCHMARK,  \"role\": \"ModelOwner\"}")
+MODEL_OWNER_IN_BENCHMARK=$(curl -s -X POST "http://127.0.0.1:8000/users/benchmarks/" -H  "accept: application/json" -H  "Authorization: Token $BENCHMARK_OWNER_TOKEN" -H  "Content-Type: application/json" -d "{  \"user\": $MODEL_OWNER,  \"benchmark\": $BENCHMARK,  \"role\": \"ModelOwner\"}")
 
 echo Model Owner User Id: $MODEL_OWNER associated to Benchmark Id: $BENCHMARK
 
@@ -74,12 +74,12 @@ MODEL_EXECUTOR2_MLCUBE=$(curl -s -X POST "http://127.0.0.1:8000/mlcubes/" -H  "a
 echo Model MLCube Created. ID: $MODEL_EXECUTOR2_MLCUBE 
 
 # Associate the model-executor1 mlcube to the created benchmark by model owner user
-MODEL_EXECUTOR1_IN_BENCHMARK=$(curl -s -X POST "http://127.0.0.1:8000/mlcubes/benchmarks" -H  "accept: application/json" -H  "Authorization: Token $MODEL_OWNER_TOKEN" -H  "Content-Type: application/json" -d "{  \"model_mlcube\": $MODEL_EXECUTOR1_MLCUBE,  \"benchmark\": $BENCHMARK,  \"approval_status\": \"APPROVED\"}")
+MODEL_EXECUTOR1_IN_BENCHMARK=$(curl -s -X POST "http://127.0.0.1:8000/mlcubes/benchmarks/" -H  "accept: application/json" -H  "Authorization: Token $MODEL_OWNER_TOKEN" -H  "Content-Type: application/json" -d "{  \"model_mlcube\": $MODEL_EXECUTOR1_MLCUBE,  \"benchmark\": $BENCHMARK,  \"approval_status\": \"APPROVED\"}")
 
 echo Model MlCube Id: $MODEL_EXECUTOR1_MLCUBE associated to Benchmark Id: $BENCHMARK
 
 # Associate the model-executor2 mlcube to the created benchmark by model owner user
-MODEL_EXECUTOR2_IN_BENCHMARK=$(curl -s -X POST "http://127.0.0.1:8000/mlcubes/benchmarks" -H  "accept: application/json" -H  "Authorization: Token $MODEL_OWNER_TOKEN" -H  "Content-Type: application/json" -d "{  \"model_mlcube\": $MODEL_EXECUTOR2_MLCUBE,  \"benchmark\": $BENCHMARK,  \"approval_status\": \"APPROVED\"}")
+MODEL_EXECUTOR2_IN_BENCHMARK=$(curl -s -X POST "http://127.0.0.1:8000/mlcubes/benchmarks/" -H  "accept: application/json" -H  "Authorization: Token $MODEL_OWNER_TOKEN" -H  "Content-Type: application/json" -d "{  \"model_mlcube\": $MODEL_EXECUTOR2_MLCUBE,  \"benchmark\": $BENCHMARK,  \"approval_status\": \"APPROVED\"}")
 
 echo Model MlCube Id: $MODEL_EXECUTOR2_MLCUBE associated to Benchmark Id: $BENCHMARK
 
@@ -96,7 +96,7 @@ DATASET=$(curl -s -X POST "http://127.0.0.1:8000/datasets/" -H  "accept: applica
 echo Dataset Created. Id: $DATASET
 
 # Associate the created dataset to the benchmark by data owner
-DATASET_IN_BENCHMARK=$(curl -s -X POST "http://127.0.0.1:8000/datasets/benchmarks" -H  "accept: application/json" -H  "Authorization: Token $DATASET_OWNER_TOKEN" -H  "Content-Type: application/json" -d "{  \"dataset\": $DATASET,  \"benchmark\": $BENCHMARK,  \"approval_status\": \"APPROVED\"}")
+DATASET_IN_BENCHMARK=$(curl -s -X POST "http://127.0.0.1:8000/datasets/benchmarks/" -H  "accept: application/json" -H  "Authorization: Token $DATASET_OWNER_TOKEN" -H  "Content-Type: application/json" -d "{  \"dataset\": $DATASET,  \"benchmark\": $BENCHMARK,  \"approval_status\": \"APPROVED\"}")
 
 echo Dataset Id: $DATASET associated to Benchmark Id: $BENCHMARK
 
