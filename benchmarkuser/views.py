@@ -12,13 +12,13 @@ class BenchmarkUser(GenericAPIView):
     serializer_class = BenchmarkUserSerializer
     queryset = ''
     
-    def get(self, request, format=None):
-        """
-        List all users associated across benchmarks
-        """
-        benchmarkusers = BenchmarkUser.objects.all()
-        serializer = BenchmarkUserSerializer(benchmarkusers, many=True)
-        return Response(serializer.data)
+    #def get(self, request, format=None):
+    #    """
+    #    List all users associated across benchmarks
+    #    """
+    #    benchmarkusers = BenchmarkUser.objects.all()
+    #    serializer = BenchmarkUserSerializer(benchmarkusers, many=True)
+    #    return Response(serializer.data)
 
     def post(self, request, format=None):
         """
@@ -48,24 +48,24 @@ class BenchmarkRole(GenericAPIView):
         serializer = BenchmarkRoleSerializer(benchmarkuser,many=True)
         return Response(serializer.data)
 
-    def put(self, request, pk, format=None):
-        """
-        Update the benchmark association with a user
-        """
-        benchmarkuser = self.get_object(pk)
-        serializer = BenchmarkRoleSerializer(benchmarkuser, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    #def put(self, request, pk, format=None):
+    #    """
+    #    Update the benchmark association with a user
+    #    """
+    #    benchmarkuser = self.get_object(pk)
+    #    serializer = BenchmarkRoleSerializer(benchmarkuser, data=request.data)
+    #    if serializer.is_valid():
+    #        serializer.save()
+    #        return Response(serializer.data)
+    #    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, pk, format=None):
-        """
-        Delete a benchmark association with a user
-        """
-        benchmarkuser = self.get_object(pk)
-        benchmarkuser.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    #def delete(self, request, pk, format=None):
+    #    """
+    #    Delete a benchmark association with a user
+    #    """
+    #    benchmarkuser = self.get_object(pk)
+    #    benchmarkuser.delete()
+    #    return Response(status=status.HTTP_204_NO_CONTENT)
 
 class Role(GenericAPIView):
     serializer_class = RoleSerializer

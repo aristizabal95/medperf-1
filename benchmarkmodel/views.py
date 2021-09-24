@@ -12,13 +12,13 @@ class BenchmarkModel(GenericAPIView):
     serializer_class = BenchmarkModelSerializer
     queryset = ''
     
-    def get(self, request, format=None):
-        """
-        List all models associated across benchmarks
-        """
-        benchmarkmodels = BenchmarkModel.objects.all()
-        serializer = BenchmarkModelSerializer(benchmarkmodels, many=True)
-        return Response(serializer.data)
+    #def get(self, request, format=None):
+    #    """
+    #    List all models associated across benchmarks
+    #    """
+    #    benchmarkmodels = BenchmarkModel.objects.all()
+    #    serializer = BenchmarkModelSerializer(benchmarkmodels, many=True)
+    #    return Response(serializer.data)
 
     def post(self, request, format=None):
         """
@@ -48,24 +48,24 @@ class BenchmarkModelApproval(GenericAPIView):
         serializer = BenchmarkModelApprovalSerializer(benchmarkmodel, many=True)
         return Response(serializer.data)
 
-    def put(self, request, pk, format=None):
-        """
-        Update the benchmark association with a model
-        """
-        benchmarkmodel = self.get_object(pk)
-        serializer = BenchmarkModelApprovalSerializer(benchmarkmodel, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    #def put(self, request, pk, format=None):
+    #    """
+    #    Update the benchmark association with a model
+    #    """
+    #    benchmarkmodel = self.get_object(pk)
+    #    serializer = BenchmarkModelApprovalSerializer(benchmarkmodel, data=request.data)
+    #    if serializer.is_valid():
+    #        serializer.save()
+    #        return Response(serializer.data)
+    #    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, pk, format=None):
-        """
-        Delete a benchmark association with a model
-        """
-        benchmarkmodel = self.get_object(pk)
-        benchmarkmodel.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    #def delete(self, request, pk, format=None):
+    #    """
+    #    Delete a benchmark association with a model
+    #    """
+    #    benchmarkmodel = self.get_object(pk)
+    #    benchmarkmodel.delete()
+    #    return Response(status=status.HTTP_204_NO_CONTENT)
 
 class ModelApproval(GenericAPIView):
     serializer_class = ModelApprovalSerializer

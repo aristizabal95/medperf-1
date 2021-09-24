@@ -12,13 +12,13 @@ class BenchmarkDataset(GenericAPIView):
     serializer_class = BenchmarkDatasetSerializer
     queryset = ''
 
-    def get(self, request, format=None):
-        """
-        List all datasets associated across benchmarks
-        """
-        benchmarkdatasets = BenchmarkDataset.objects.all()
-        serializer = BenchmarkDatasetSerializer(benchmarkdatasets, many=True)
-        return Response(serializer.data)
+    #def get(self, request, format=None):
+    #    """
+    #    List all datasets associated across benchmarks
+    #    """
+    #    benchmarkdatasets = BenchmarkDataset.objects.all()
+    #    serializer = BenchmarkDatasetSerializer(benchmarkdatasets, many=True)
+    #    return Response(serializer.data)
 
     def post(self, request, format=None):
         """
@@ -48,24 +48,24 @@ class BenchmarkDatasetApproval(GenericAPIView):
         serializer = BenchmarkDatasetApprovalSerializer(benchmarkdataset, many=True)
         return Response(serializer.data)
 
-    def put(self, request, pk, format=None):
-        """
-        Update the benchmark association with a dataset
-        """
-        benchmarkdataset = self.get_object(pk)
-        serializer = BenchmarkDatasetApprovalSerializer(benchmarkdataset, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    #def put(self, request, pk, format=None):
+    #    """
+    #    Update the benchmark association with a dataset
+    #    """
+    #    benchmarkdataset = self.get_object(pk)
+    #    serializer = BenchmarkDatasetApprovalSerializer(benchmarkdataset, data=request.data)
+    #    if serializer.is_valid():
+    #        serializer.save()
+    #        return Response(serializer.data)
+    #    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, pk, format=None):
-        """
-        Delete a benchmark association with a dataset
-        """
-        benchmarkdataset = self.get_object(pk)
-        benchmarkdataset.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    #def delete(self, request, pk, format=None):
+    #    """
+    #    Delete a benchmark association with a dataset
+    #    """
+    #    benchmarkdataset = self.get_object(pk)
+    #    benchmarkdataset.delete()
+    #    return Response(status=status.HTTP_204_NO_CONTENT)
 
 class DatasetApproval(GenericAPIView):
     serializer_class = DatasetApprovalSerializer
