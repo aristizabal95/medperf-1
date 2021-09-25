@@ -37,7 +37,7 @@ class BenchmarkModelApproval(GenericAPIView):
     
     def get_object(self, pk):
         try:
-            return BenchmarkModel.objects.filter(mlcube__id=pk)
+            return BenchmarkModel.objects.filter(model_mlcube__id=pk)
         except BenchmarkModel.DoesNotExist:
             raise Http404
 
@@ -74,7 +74,7 @@ class ModelApproval(GenericAPIView):
     
     def get_object(self, model_id, benchmark_id):
         try:
-            return BenchmarkModel.objects.get(mlcube__id=model_id, benchmark__id=benchmark_id)
+            return BenchmarkModel.objects.get(model_mlcube__id=model_id, benchmark__id=benchmark_id)
         except BenchmarkModel.DoesNotExist:
             raise Http404
 
