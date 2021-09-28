@@ -26,18 +26,18 @@ BENCHMARK_OWNER_TOKEN=$(curl -s -X POST "http://127.0.0.1:8000/auth-token/" -H  
 echo Benchmark Owner Token: $BENCHMARK_OWNER_TOKEN
 
 # Create a Data preprocessor MLCube by Benchmark Owner 
-DATA_PREPROCESSOR_MLCUBE=$(curl -s -X POST "http://127.0.0.1:8000/mlcubes/" -H  "accept: application/json" -H  "Authorization: Token $BENCHMARK_OWNER_TOKEN" -H  "Content-Type: application/json" -d "{  \"name\": \"datapreprocessor\",  \"git_url\": \"string\",  \"tarball_url\": \"string\",  \"tarball_hash\": \"string\",  \"metadata\": {},  \"status\": \"APPROVED\"}" | jq -r '.id')
+DATA_PREPROCESSOR_MLCUBE=$(curl -s -X POST "http://127.0.0.1:8000/mlcubes/" -H  "accept: application/json" -H  "Authorization: Token $BENCHMARK_OWNER_TOKEN" -H  "Content-Type: application/json" -d "{  \"name\": \"datapreprocessor\",  \"git_mlcube_url\": \"string\", \"git_parameters_url\": \"string\", \"tarball_url\": \"string\",  \"tarball_hash\": \"string\",  \"metadata\": {},  \"status\": \"APPROVED\"}" | jq -r '.id')
 
 echo Data Preprocessor MLCube Created. ID: $DATA_PREPROCESSOR_MLCUBE
 
 # Create a reference model executor mlcube by Benchmark Owner
-REFERENCE_MODEL_EXECUTOR_MLCUBE=$(curl -s -X POST "http://127.0.0.1:8000/mlcubes/" -H  "accept: application/json" -H  "Authorization: Token $BENCHMARK_OWNER_TOKEN" -H  "Content-Type: application/json" -d "{  \"name\": \"reference-model\",  \"git_url\": \"string\",  \"tarball_url\": \"string\",  \"tarball_hash\": \"string\",  \"metadata\": {},  \"status\": \"APPROVED\"}" | jq -r '.id')
+REFERENCE_MODEL_EXECUTOR_MLCUBE=$(curl -s -X POST "http://127.0.0.1:8000/mlcubes/" -H  "accept: application/json" -H  "Authorization: Token $BENCHMARK_OWNER_TOKEN" -H  "Content-Type: application/json" -d "{  \"name\": \"reference-model\",  \"git_mlcube_url\": \"string\", \"git_parameters_url\": \"string\", \"tarball_url\": \"string\",  \"tarball_hash\": \"string\",  \"metadata\": {},  \"status\": \"APPROVED\"}" | jq -r '.id')
 
 
 echo Reference Model Executor MlCube Created. ID: $REFERENCE_MODEL_EXECUTOR_MLCUBE
 
 # Create a Data evalutor MLCube by Benchmark Owner 
-DATA_EVALUATOR_MLCUBE=$(curl -s -X POST "http://127.0.0.1:8000/mlcubes/" -H  "accept: application/json" -H  "Authorization: Token $BENCHMARK_OWNER_TOKEN" -H  "Content-Type: application/json" -d "{  \"name\": \"evaluator\",  \"git_url\": \"string\",  \"tarball_url\": \"string\",  \"tarball_hash\": \"string\",  \"metadata\": {},  \"status\": \"APPROVED\"}" | jq -r '.id')
+DATA_EVALUATOR_MLCUBE=$(curl -s -X POST "http://127.0.0.1:8000/mlcubes/" -H  "accept: application/json" -H  "Authorization: Token $BENCHMARK_OWNER_TOKEN" -H  "Content-Type: application/json" -d "{  \"name\": \"evaluator\",  \"git_mlcube_url\": \"string\", \"git_parameters_url\": \"string\", \"tarball_url\": \"string\",  \"tarball_hash\": \"string\",  \"metadata\": {},  \"status\": \"APPROVED\"}" | jq -r '.id')
 
 echo Data Evaluator MlCube Created. ID: $DATA_EVALUATOR_MLCUBE
 
@@ -52,7 +52,7 @@ MODEL_OWNER_IN_BENCHMARK=$(curl -s -X POST "http://127.0.0.1:8000/users/benchmar
 echo Model Owner User Id: $MODEL_OWNER associated to Benchmark Id: $BENCHMARK
 
 # Associate the testdataowner(Data owner) to the created benchmark by Benchmark owner user
-DATASET_OWNER_IN_BENCHMARK=$(curl -s -X POST "http://127.0.0.1:8000/users/benchmarks" -H  "accept: application/json" -H  "Authorization: Token $BENCHMARK_OWNER_TOKEN" -H  "Content-Type: application/json" -d "{  \"user\": $DATA_OWNER,  \"benchmark\": $BENCHMARK,  \"role\": \"DataOwner\"}")
+DATASET_OWNER_IN_BENCHMARK=$(curl -s -X POST "http://127.0.0.1:8000/users/benchmarks/" -H  "accept: application/json" -H  "Authorization: Token $BENCHMARK_OWNER_TOKEN" -H  "Content-Type: application/json" -d "{  \"user\": $DATA_OWNER,  \"benchmark\": $BENCHMARK,  \"role\": \"DataOwner\"}")
 
 echo Data Owner User Id: $DATA_OWNER associated to Benchmark Id: $BENCHMARK
 
@@ -64,12 +64,12 @@ MODEL_OWNER_TOKEN=$(curl -s -X POST "http://127.0.0.1:8000/auth-token/" -H  "acc
 echo Model Owner Token: $MODEL_OWNER_TOKEN
 
 # Create a model mlcube by Model Owner
-MODEL_EXECUTOR1_MLCUBE=$(curl -s -X POST "http://127.0.0.1:8000/mlcubes/" -H  "accept: application/json" -H  "Authorization: Token $MODEL_OWNER_TOKEN" -H  "Content-Type: application/json" -d "{  \"name\": \"model-executor1\",  \"git_url\": \"string\",  \"tarball_url\": \"string\",  \"tarball_hash\": \"string\",  \"metadata\": {},  \"status\": \"APPROVED\"}" | jq -r '.id')
+MODEL_EXECUTOR1_MLCUBE=$(curl -s -X POST "http://127.0.0.1:8000/mlcubes/" -H  "accept: application/json" -H  "Authorization: Token $MODEL_OWNER_TOKEN" -H  "Content-Type: application/json" -d "{  \"name\": \"model-executor1\",  \"git_mlcube_url\": \"string\", \"git_parameters_url\": \"string\", \"tarball_url\": \"string\",  \"tarball_hash\": \"string\",  \"metadata\": {},  \"status\": \"APPROVED\"}" | jq -r '.id')
 
 echo Model MLCube Created. ID: $MODEL_EXECUTOR1_MLCUBE
 
 # Create another model mlcube by Model Owner
-MODEL_EXECUTOR2_MLCUBE=$(curl -s -X POST "http://127.0.0.1:8000/mlcubes/" -H  "accept: application/json" -H  "Authorization: Token $MODEL_OWNER_TOKEN" -H  "Content-Type: application/json" -d "{  \"name\": \"model-executor2\",  \"git_url\": \"string\",  \"tarball_url\": \"string\",  \"tarball_hash\": \"string\",  \"metadata\": {},  \"status\": \"APPROVED\"}" | jq -r '.id')
+MODEL_EXECUTOR2_MLCUBE=$(curl -s -X POST "http://127.0.0.1:8000/mlcubes/" -H  "accept: application/json" -H  "Authorization: Token $MODEL_OWNER_TOKEN" -H  "Content-Type: application/json" -d "{  \"name\": \"model-executor2\",  \"git_mlcube_url\": \"string\",  \"git_parameters_url\": \"string\", \"tarball_url\": \"string\",  \"tarball_hash\": \"string\",  \"metadata\": {},  \"status\": \"APPROVED\"}" | jq -r '.id')
 
 echo Model MLCube Created. ID: $MODEL_EXECUTOR2_MLCUBE 
 

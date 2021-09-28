@@ -9,9 +9,10 @@ class MlCube(models.Model):
             )
 
     name = models.CharField(max_length=20)
-    git_url = models.CharField(max_length=100)
-    tarball_url = models.CharField(max_length=100)
-    tarball_hash = models.CharField(max_length=100)
+    git_mlcube_url = models.CharField(max_length=100)
+    git_parameters_url = models.CharField(max_length=100)
+    tarball_url = models.CharField(max_length=100, blank=True)
+    tarball_hash = models.CharField(max_length=100, blank=True)
     owner =  models.ForeignKey(User, on_delete=models.PROTECT)
     metadata = models.JSONField(default=dict, blank=True, null=True)
     status = models.CharField(choices=MLCUBE_STATUS,max_length=100)
