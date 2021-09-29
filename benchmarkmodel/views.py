@@ -86,7 +86,7 @@ class ModelApproval(GenericAPIView):
         serializer = ModelApprovalSerializer(benchmarkmodel)
         return Response(serializer.data)
 
-    def put(self, request, pk, format=None):
+    def put(self, request, pk, bid, format=None):
         """
         Update approval status of benchmark model association
         """

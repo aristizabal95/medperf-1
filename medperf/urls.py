@@ -18,12 +18,10 @@ from django.urls import path
 from django.conf.urls import url
 from django.conf.urls import include
 from rest_framework.authtoken.views import obtain_auth_token
-#from rest_framework_swagger.views import get_swagger_view
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
-#schema_view = get_swagger_view(title='MedPerf API')
 schema_view = get_schema_view(
    openapi.Info(
       title="MedPerf API",
@@ -35,7 +33,6 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    #url(r'^$', schema_view),
     url(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     url(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     url(r'^apidoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
@@ -44,10 +41,8 @@ urlpatterns = [
     path('benchmarks/', include('benchmark.urls')),
     path('mlcubes/', include('mlcube.urls')),
     path('datasets/', include('dataset.urls')),
-    path('benchmarkdatasets/', include('benchmarkdataset.urls')),
-    path('benchmarkmodels/', include('benchmarkmodel.urls')),
-    path('benchmarkusers/', include('benchmarkuser.urls')),
     path('results/', include('result.urls')),
     path('users/', include('user.urls')),
+    path('me/', include('utils.urls')),
     path('auth-token/', obtain_auth_token, name='auth-token'),
 ]

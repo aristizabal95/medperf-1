@@ -2,12 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Dataset(models.Model):
-    DATASET_STATUS = (
-            ('PENDING','PENDING'),
-            ('APPROVED', 'APPROVED'),
-            ('REJECTED', 'REJECTED'),
-            )
-
     name = models.CharField(max_length=20)
     description = models.CharField(max_length=20, blank=True)
     location = models.CharField(max_length=100, blank=True)
@@ -16,7 +10,6 @@ class Dataset(models.Model):
     split_seed = models.IntegerField()
     data_preparation_mlcube = models.ForeignKey("mlcube.MlCube", on_delete=models.PROTECT, related_name="benchmark_preprocessor_mlcube")
     metadata = models.JSONField(default=dict, blank=True, null=True)
-    status = models.CharField(choices=DATASET_STATUS,max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)    
 

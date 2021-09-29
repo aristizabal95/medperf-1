@@ -87,16 +87,16 @@ class Role(GenericAPIView):
         serializer = RoleSerializer(benchmarkuser,many=True)
         return Response(serializer.data)
 
-    def put(self, request, pk, bid, format=None):
-        """
-        Update user role of benchmark user association
-        """
-        benchmarkuser = self.get_object(pk, bid)
-        serializer = RoleSerializer(benchmarkuser, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    #def put(self, request, pk, bid, format=None):
+    #    """
+    #    Update user role of benchmark user association
+    #    """
+    #    benchmarkuser = self.get_object(pk, bid)
+    #    serializer = RoleSerializer(benchmarkuser, data=request.data)
+    #    if serializer.is_valid():
+    #        serializer.save()
+    #        return Response(serializer.data)
+    #    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk, bid, format=None):
         """
