@@ -17,7 +17,7 @@ from rest_framework import status
 class User(GenericAPIView):
     serializer_class = UserSerializer
     queryset = ''
-    
+
     def get(self, request, format=None):
         """
         Retrieve info of the current user
@@ -47,7 +47,7 @@ class BenchmarkList(GenericAPIView):
 class MlCubeList(GenericAPIView):
     serializer_class = MlCubeSerializer
     queryset = ''
-    
+ 
     def get_object(self, pk):
         try:
             return MlCube.objects.filter(owner__id=pk)
@@ -65,7 +65,7 @@ class MlCubeList(GenericAPIView):
 class DatasetList(GenericAPIView):
     serializer_class = DatasetSerializer
     queryset = ''
-   
+ 
     def get_object(self, pk):
         try:
             return Dataset.objects.filter(owner__id=pk)
@@ -83,7 +83,7 @@ class DatasetList(GenericAPIView):
 class ModelResultList(GenericAPIView):
     serializer_class = ModelResultSerializer
     queryset = ''
-    
+
     def get_object(self, pk):
         try:
             return ModelResult.objects.filter(owner__id=pk)
